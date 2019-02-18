@@ -61,7 +61,38 @@ void At_end(struct Node** head_ref, void* new_data)
 
 	last->next = new_node; 
 	return;	 
-} 
+}
+
+void deleteNode(struct Node **head_ref, struct Node *del)
+{ 
+    struct Node* temp = (*head_ref); 
+    struct Node* prev = NULL;
+
+    if(*head_ref == NULL || del == NULL) 
+        return; 
+
+    if(temp == del) 
+     {
+        *head_ref = del->next;
+        free(del); 
+        return; 
+     } 
+    
+    while(temp != del && temp != NULL)
+    {
+        prev = temp;
+        temp= temp ->next;
+    }
+
+    if(temp == NULL)
+       return;
+
+    prev->next = temp ->next;
+    free(temp); 
+       
+  } 
+
+ 
 
 
 
